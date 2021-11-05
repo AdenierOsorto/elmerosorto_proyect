@@ -2,12 +2,27 @@ extends base.pug
 block title 
     title Inicio
 block container
-    .container.offset-3.row.mt-5
+    .offset-3.row.mt-5
         h3 Nuevo Municipio
-    .container.row.offset-3.mt-5(style={width:'500px'})
+    .offset-3.row.mt-5(style={width:'500px'})
+        table.table.table-dark
+            thead 
+                th codigo
+                th Nombre Municipio
+                th Editar / Eliminar 
+            tbody.tbody-info
+            each item in datos
+                tr 
+                    td #{item.municipioId}
+                    td #{item.nombreMunicipio}
+            p #{datos}    
+    .row.offset-3.mt-5(style={width:'500px'})
         form.form-(action="/newMunicipio", method="post")
             label(for="floatingInput") Nombre Municipio
             input#floatingInput.form-control(type='text' placeholder='' name="nommunicipio")
 
             button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
             a.w-100.btn.btn-lg.btn-danger.mt-1(href='/new') Back
+    
+block script
+    script(src="js/newMunicipio.js")
