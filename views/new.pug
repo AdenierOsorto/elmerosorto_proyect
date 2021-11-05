@@ -1,0 +1,17 @@
+extends base.pug
+block title 
+    title Nuevo Registro
+block container
+    .row.offset-2.mt-5
+        .col-2
+            a.w-100.btn.btn-lg.btn-danger(href="/") Back 
+        .col-10 
+            h3 Nuevo Registro
+
+    .row.offset-2.mt-5
+        .col-5.mt-5
+            img.mb-4.offset-2(src='img/customer.png' alt='' width='64' height='64')
+            a.w-100.btn.btn-lg.btn-dark(href="") Nuevo Cliente 
+        .col-5.mt-5
+            img.mb-4.offset-1(src='img/muni.png' alt='' width='64' height='64')
+            a.w-100.btn.btn-lg.btn-warning(href="/newMunicipio") Nuevo Municipio
