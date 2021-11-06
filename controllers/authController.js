@@ -43,7 +43,6 @@ export const  deleteMunicipio = async (req, res, next) => {
 export const  editarMunicipio = async (req, res, next) => {  
     const {nommunicipio} = req.body;
     const {id} = req.params;
-    
     const data = [ 
         nommunicipio,
         id

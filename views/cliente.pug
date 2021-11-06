@@ -1,0 +1,39 @@
+extends base.pug
+block title 
+    title Inicio
+block container
+    .row.mt-5
+        h3 Registro de Municipios
+
+        .col-3.mt-5
+            h4 Nuevo Municipio
+            form.form-(action="/newMunicipio", method="post")
+                label.mt-2(for="clienteCod") Codigo Cliente
+                input#clienteCod.form-control(type='text'  placeholder='xxxx-xxxx-xxxx' required="required" name="clienteCod")
+                label.mt-2(for="floatingInput") Nombre
+                input#floatingInput.form-control(type='text' placeholder='' required="required" name="nombreCliente")
+                label.mt-2(for="floatingInput") Apellido
+                input#floatingInput.form-control(type='text' placeholder='' required="required" name="apellidoCliente")
+                label.mt-2(for="floatingInput") Email 
+                input#floatingInput.form-control(type='email' placeholder='' name="emailCliente")
+                label.mt-2(for="floatingInput") Fecha de Nacimiento
+                input#floatingInput.form-control(type='date' placeholder='' required="required" name="nommunicipio")
+                label.mt-2(for="floatingInput") Municipio
+                select.form-control
+                    option(value="1") Choluteca 
+                button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
+                a.w-100.btn.btn-lg.btn-danger.mt-1(href='/') Back
+        .col-9.mt-5    
+            .table-responsive
+                table.table.table-dark.table-striped
+                    thead 
+                        th codigo
+                        th Nombre
+                        th Apellido 
+                        th Email
+                        th Telefono
+                        th Fecha de Nacimiento
+                        th Municipio
+                    tbody.tbody-info
+block script
+    script(src="js/newCliente.js")
