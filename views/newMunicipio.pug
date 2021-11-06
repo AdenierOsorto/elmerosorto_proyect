@@ -18,7 +18,7 @@ block container
                                 td #{item.municipioId}
                                 td #{item.nombreMunicipio}
                                 td 
-                                    a.btn.btn-lg.btn-success.ml-2(href='/new') Editar
+                                    a.btn.btn-lg.btn-success.ml-2(href=`/editarMunicipio/` + item.municipioId) Editar
                                     a.btn.btn-lg.btn-danger.ml-2(href=`/deleteMunicipio/` + item.municipioId) Eliminar
     
     .row.offset-3.mt-5(style={width:'550px'})

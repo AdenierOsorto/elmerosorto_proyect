@@ -1,0 +1,20 @@
+extends base.pug
+block title 
+    title Editar
+block container
+    .offset-3.row.mt-5
+        h3 Editar Municipio
+    .row.offset-3.mt-5(style={width:'550px'})
+        if(datos)
+            form.form-(action="/newMunicipio", method="post")
+                label(for="floatingInput") ID
+                input#floatingInput.form-control.disable(type='text' Disabled value=datos[0].municipioId placeholder='' name="nommunicipio")
+                label(for="floatingInput") Nombre Municipio
+                input#floatingInput.form-control(type='text' value=datos[0].nombreMunicipio placeholder='' name="nommunicipio")
+                button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
+                a.w-100.btn.btn-lg.btn-danger.mt-1(href='/newMunicipio') Back
+        else
+            h3.list-group-item.list-group-item-warning Selecionar un Municipio a editar
+            a.w-100.btn.btn-lg.btn-danger.mt-2(href='/newMunicipio') Back
+        
+    

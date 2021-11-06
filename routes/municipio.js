@@ -1,5 +1,5 @@
 import express from 'express';
-import {deleteMunicipio, newMunicipio, selectMunicipio} from '../controllers/authController.js'
+import {deleteMunicipio, newMunicipio, selectMunicipio, editarMunicipio, buscarMunicipio} from '../controllers/authController.js'
 const router = express.Router();
 
 
@@ -16,4 +16,8 @@ router.post('/newMunicipio', newMunicipio);
 //1.25.00
 //delete
 router.get('/deleteMunicipio/:id', deleteMunicipio);
+//editar
+router.get('/buscarMunicipio/:id', buscarMunicipio, (req, res) =>{
+    res.render('editarMunicipio', {datos:req.data})
+});
 export default router;

@@ -43,3 +43,30 @@ export const  deleteMunicipio = async (req, res, next) => {
         next();
     });
 }
+export const  buscarMunicipio = async (req, res, next) => {  
+    //contruir la data que sera insertada;
+    const {id} = req.params;
+    cnn.query('SELECT * FROM municipios WHERE municipioId = ? ', [id], (err, result)=>{
+        if(err){
+            console.log(`Un error al buscar al usuario: ${id}: ${err}`);
+            return;
+        }
+        if(result.length > 0){
+            req.data = result;
+        }
+        else
+            res.redirect('/newMunicipio');
+        next();
+    });
+}
+export const  editarMunicipio = async (req, res, next) => {  
+    const {id} = req.params;
+    cnn.query('DELETE FROM municipios WHERE municipioId = ?', [id], (err, result)=>{
+        if(err){
+            console.log(`Un error al eliminar la información: ${err}`);
+            return;
+        }
+        res.redirect('/newMunicipio');
+        next();
+    });
+}
