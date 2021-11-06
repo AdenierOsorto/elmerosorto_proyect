@@ -4,19 +4,24 @@ block title
 block container
     .offset-3.row.mt-5
         h3 Nuevo Municipio
-    .offset-3.row.mt-5(style={width:'500px'})
-        table.table.table-dark
-            thead 
-                th codigo
-                th Nombre Municipio
-                th Editar / Eliminar 
-            tbody.tbody-info
-            each item in datos
-                tr 
-                    td #{item.municipioId}
-                    td #{item.nombreMunicipio}
-            p #{datos}    
-    .row.offset-3.mt-5(style={width:'500px'})
+    .offset-3.row.mt-5(style={width:'550px'})
+        .table-responsive
+            table.table.table-dark.table-striped
+                thead 
+                    th codigo
+                    th Nombre Municipio
+                    th Editar / Eliminar 
+                tbody.tbody-info
+                    if (datos)
+                        each item in datos
+                            tr 
+                                td #{item.municipioId}
+                                td #{item.nombreMunicipio}
+                                td 
+                                    a.btn.btn-lg.btn-success.ml-2(href='/new') Editar
+                                    a.btn.btn-lg.btn-danger.ml-2(href=`/deleteMunicipio/` + item.municipioId) Eliminar
+    
+    .row.offset-3.mt-5(style={width:'550px'})
         form.form-(action="/newMunicipio", method="post")
             label(for="floatingInput") Nombre Municipio
             input#floatingInput.form-control(type='text' placeholder='' name="nommunicipio")
