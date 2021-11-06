@@ -3,37 +3,45 @@ block title
     title Inicio
 block container
     .row.mt-5
-        h3 Registro de Municipios
-
-        .col-3.mt-5
-            h4 Nuevo Municipio
-            form.form-(action="/newMunicipio", method="post")
-                label.mt-2(for="clienteCod") Codigo Cliente
-                input#clienteCod.form-control(type='text'  placeholder='xxxx-xxxx-xxxx' required="required" name="clienteCod")
-                label.mt-2(for="floatingInput") Nombre
-                input#floatingInput.form-control(type='text' placeholder='' required="required" name="nombreCliente")
-                label.mt-2(for="floatingInput") Apellido
-                input#floatingInput.form-control(type='text' placeholder='' required="required" name="apellidoCliente")
-                label.mt-2(for="floatingInput") Email 
-                input#floatingInput.form-control(type='email' placeholder='' name="emailCliente")
-                label.mt-2(for="floatingInput") Fecha de Nacimiento
-                input#floatingInput.form-control(type='date' placeholder='' required="required" name="nommunicipio")
-                label.mt-2(for="floatingInput") Municipio
-                select.form-control
-                    option(value="1") Choluteca 
-                button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
-                a.w-100.btn.btn-lg.btn-danger.mt-1(href='/') Back
-        .col-9.mt-5    
-            .table-responsive
-                table.table.table-dark.table-striped
-                    thead 
-                        th codigo
-                        th Nombre
-                        th Apellido 
-                        th Email
-                        th Telefono
-                        th Fecha de Nacimiento
-                        th Municipio
-                    tbody.tbody-info
+        h3 Registro de Clientes
+        p #{muni}
+        if(munis.length > 0)
+            .col-3.mt-5
+                h4 Nuevo Municipio
+                form.form-(action="/newCliente", method="post")
+                    label.mt-2(for="clienteCod") Codigo Cliente
+                    input#clienteCod.form-control(type='text'  placeholder='xxxx-xxxx-xxxx' required="required" name="clienteCod")
+                    label.mt-2(for="nombreCliente") Nombre
+                    input#nombreCliente.form-control(type='text' placeholder='' required="required" name="nombreCliente")
+                    label.mt-2(for="apellidoCliente") Apellido
+                    input#apellidoCliente.form-control(type='text' placeholder='' required="required" name="apellidoCliente")
+                    label.mt-2(for="emailCliente") Email 
+                    input#emailCliente.form-control(type='email' placeholder='ejample@example.com' name="emailCliente")
+                    label.mt-2(for="telefonoCliente") telefono
+                    input#telefonoCliente.form-control(type='text' placeholder='9999-9999'  name="telefonoCliente")
+                    label.mt-2(for="fechaCliente") Fecha de Nacimiento
+                    input#fechaCliente.form-control(type='date' placeholder='' required="required" name="fechaCliente")
+                    label.mt-2(for="municipioCliente") Municipio
+                    select#municipioCliente.form-control(name="municipioCliente")
+                        if(munis)
+                            each muni in munis
+                                option(value=`${muni.municipioId}`) #{muni.nombreMunicipio} 
+                    button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
+                    a.w-100.btn.btn-lg.btn-danger.mt-1(href='/') Back
+            .col-9.mt-5    
+                .table-responsive
+                    table.table.table-dark.table-striped
+                        thead 
+                            th codigo
+                            th Nombre
+                            th Apellido 
+                            th Email
+                            th Telefono
+                            th Fecha de Nacimiento
+                            th Municipio
+                        tbody.tbody-info
+        else
+            h3.w-50.bg-warning.offset-3 Por favor, se necesitan tener ingresado Municipio
+            a.w-50.offset-3.btn.btn-lg.btn-success.mt-1(href='/newMunicipio') Municipio
 block script
     script(src="js/newCliente.js")
