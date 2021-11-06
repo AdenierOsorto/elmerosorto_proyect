@@ -1,9 +1,14 @@
-// $(function(){
+function editar(id, nom){
+    $('.guardar').hide();
+    $('.editar').show();
+    $('#form-muni').attr('action', `/editarMunicipio/${id}`)
+    $('#id-muni').val(id);
+    $('#nom-muni').val(nom);
 
-//     //cargar la información en la tabla para poder mostrarla al usuario
-//     let queryMuni = 'SELECT * FROM municipio';
+}
 
-//     selectMuni(queryMuni);
-//     // $('.tbody-info')
+$(function(){
 
-// });
+    $('.editar').hide();
+    
+});

@@ -1,10 +1,7 @@
 import cnn from '../database/connection.js';
 export const  newMunicipio  = async (req, res) => {
     const { nommunicipio} = req.body;
-    console.log(req.body);
-    
-    
-    //contruir la data que sera insertada;
+        //contruir la data que sera insertada;
     const data = {
         nombreMunicipio: nommunicipio
     };
@@ -43,27 +40,18 @@ export const  deleteMunicipio = async (req, res, next) => {
         next();
     });
 }
-export const  buscarMunicipio = async (req, res, next) => {  
-    //contruir la data que sera insertada;
-    const {id} = req.params;
-    cnn.query('SELECT * FROM municipios WHERE municipioId = ? ', [id], (err, result)=>{
-        if(err){
-            console.log(`Un error al buscar al usuario: ${id}: ${err}`);
-            return;
-        }
-        if(result.length > 0){
-            req.data = result;
-        }
-        else
-            res.redirect('/newMunicipio');
-        next();
-    });
-}
 export const  editarMunicipio = async (req, res, next) => {  
+    const {nommunicipio} = req.body;
     const {id} = req.params;
-    cnn.query('DELETE FROM municipios WHERE municipioId = ?', [id], (err, result)=>{
+    
+    const data = [ 
+        nommunicipio,
+        id
+    ];
+    
+    cnn.query('UPDATE municipios SET nombreMunicipio = ? WHERE municipioId = ?', data, (err, result)=>{
         if(err){
-            console.log(`Un error al eliminar la información: ${err}`);
+            console.log(`Un error al editar la información: ${err}`);
             return;
         }
         res.redirect('/newMunicipio');

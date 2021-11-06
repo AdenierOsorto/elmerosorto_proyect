@@ -3,7 +3,7 @@ block title
     title Inicio
 block container
     .offset-3.row.mt-5
-        h3 Nuevo Municipio
+        h3 Registro de Municipios
     .offset-3.row.mt-5(style={width:'550px'})
         .table-responsive
             table.table.table-dark.table-striped
@@ -18,16 +18,28 @@ block container
                                 td #{item.municipioId}
                                 td #{item.nombreMunicipio}
                                 td 
-                                    a.btn.btn-lg.btn-success.ml-2(href=`/editarMunicipio/` + item.municipioId) Editar
+                                    a.btn.btn-lg.btn-success.ml-2(href= 'javascript:editar(' +"'"+item.municipioId +"'"+ ", "+ "'"+item.nombreMunicipio+ "'"+")" ) Editar
                                     a.btn.btn-lg.btn-danger.ml-2(href=`/deleteMunicipio/` + item.municipioId) Eliminar
     
     .row.offset-3.mt-5(style={width:'550px'})
-        form.form-(action="/newMunicipio", method="post")
-            label(for="floatingInput") Nombre Municipio
-            input#floatingInput.form-control(type='text' placeholder='' name="nommunicipio")
+        .guardar
+            h4 Nuevo Municipio
+            form.form-(action="/newMunicipio", method="post")
+                label(for="floatingInput") Nombre Municipio
+                input#floatingInput.form-control(type='text' placeholder='' required="required" name="nommunicipio")
 
-            button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
-            a.w-100.btn.btn-lg.btn-danger.mt-1(href='/new') Back
+                button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
+                a.w-100.btn.btn-lg.btn-danger.mt-1(href='/') Back
+        .editar
+            h4 Editar Municipio
+            form#form-muni.needs-validation(action="", method="post")
+                label(for="floatingInput") ID
+                input#id-muni.form-control.disable(type='text' Disabled  required="required" placeholder='' name="id")
+                label(for="floatingInput") Nombre Municipio
+                input#nom-muni.form-control(type='text'  required="required" placeholder='' name="nommunicipio")
+                button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
+                a.w-100.btn.btn-lg.btn-danger.mt-1(href='/newMunicipio') Cancelar
+        
     
 block script
     script(src="js/newMunicipio.js")
