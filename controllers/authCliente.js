@@ -14,7 +14,6 @@ export const  selectCliente = async (req, res, next) => {
 }
 export const  newCliente = async (req, res, next) => {  
     //contruir la data que sera insertada;
-    console.log(req.body);
     const {clienteCod, nombreCliente, 
             apellidoCliente, emailCliente,
             telefonoCliente, fechaCliente,
