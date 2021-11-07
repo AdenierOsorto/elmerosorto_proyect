@@ -7,27 +7,50 @@ block container
         p #{muni}
         if(munis.length > 0)
             .col-3.mt-5
-                h4 Nuevo Municipio
-                form.form-(action="/newCliente", method="post")
-                    label.mt-2(for="clienteCod") Codigo Cliente
-                    input#clienteCod.form-control(type='text'  placeholder='xxxx-xxxx-xxxx' required="required" name="clienteCod")
-                    label.mt-2(for="nombreCliente") Nombre
-                    input#nombreCliente.form-control(type='text' placeholder='' required="required" name="nombreCliente")
-                    label.mt-2(for="apellidoCliente") Apellido
-                    input#apellidoCliente.form-control(type='text' placeholder='' required="required" name="apellidoCliente")
-                    label.mt-2(for="emailCliente") Email 
-                    input#emailCliente.form-control(type='email' placeholder='ejample@example.com' name="emailCliente")
-                    label.mt-2(for="telefonoCliente") telefono
-                    input#telefonoCliente.form-control(type='text' placeholder='9999-9999'  name="telefonoCliente")
-                    label.mt-2(for="fechaCliente") Fecha de Nacimiento
-                    input#fechaCliente.form-control(type='date' placeholder='' required="required" name="fechaCliente")
-                    label.mt-2(for="municipioCliente") Municipio
-                    select#municipioCliente.form-control(name="municipioCliente")
-                        if(munis)
-                            each muni in munis
-                                option(value=`${muni.municipioId}`) #{muni.nombreMunicipio} 
-                    button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
-                    a.w-100.btn.btn-lg.btn-danger.mt-1(href='/') Back
+                .guardar
+                    h4 Nuevo Municipio
+                    form.form-(action="/newCliente", method="post")
+                        label.mt-2(for="clienteCod") Codigo Cliente
+                        input#clienteCod.form-control(type='text'  placeholder='xxxx-xxxx-xxxx' required="required" name="clienteCod")
+                        label.mt-2(for="nombreCliente") Nombre
+                        input#nombreCliente.form-control(type='text' placeholder='' required="required" name="nombreCliente")
+                        label.mt-2(for="apellidoCliente") Apellido
+                        input#apellidoCliente.form-control(type='text' placeholder='' required="required" name="apellidoCliente")
+                        label.mt-2(for="emailCliente") Email 
+                        input#emailCliente.form-control(type='email' placeholder='ejample@example.com' name="emailCliente")
+                        label.mt-2(for="telefonoCliente") telefono
+                        input#telefonoCliente.form-control(type='text' placeholder='9999-9999'  name="telefonoCliente")
+                        label.mt-2(for="fechaCliente") Fecha de Nacimiento
+                        input#fechaCliente.form-control(type='date' placeholder='' required="required" name="fechaCliente")
+                        label.mt-2(for="municipioCliente") Municipio
+                        select#municipioCliente.form-control(name="municipioCliente")
+                            if(munis)
+                                each muni in munis
+                                    option(value=`${muni.municipioId}`) #{muni.nombreMunicipio} 
+                        button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
+                        a.w-100.btn.btn-lg.btn-danger.mt-1(href='/') Back
+                .editar
+                    h4 Editar Municipio
+                    form.editar-cliente.form-(action="", method="post")
+                        label.mt-2(for="clienteCod") Codigo Cliente
+                        input.clienteCod.form-control(type='text'  placeholder='xxxx-xxxx-xxxx' required="required" name="clienteCod")
+                        label.mt-2(for="nombreCliente") Nombre
+                        input.nombreCliente.form-control(type='text' placeholder='' required="required" name="nombreCliente")
+                        label.mt-2(for="apellidoCliente") Apellido
+                        input.apellidoCliente.form-control(type='text' placeholder='' required="required" name="apellidoCliente")
+                        label.mt-2(for="emailCliente") Email 
+                        input.emailCliente.form-control(type='email' placeholder='ejample@example.com' name="emailCliente")
+                        label.mt-2(for="telefonoCliente") telefono
+                        input.telefonoCliente.form-control(type='text' placeholder='9999-9999'  name="telefonoCliente")
+                        label.mt-2(for="fechaCliente") Fecha de Nacimiento
+                        input.fechaCliente.form-control(type='date' placeholder='' required="required" name="fechaCliente")
+                        label.mt-2(for="municipioCliente") Municipio
+                        select.municipioCliente.form-control(name="municipioCliente")
+                            if(munis)
+                                each muni in munis
+                                    option(value=`${muni.municipioId}`) #{muni.nombreMunicipio} 
+                        button.w-100.btn.btn-lg.btn-primary.mt-2(type='submit') Guardar
+                        a.w-100.btn.btn-lg.btn-danger.mt-1(href='/cliente') Cancelar
             .col-9.mt-5    
                 .table-responsive
                     table.table.table-dark.table-striped
@@ -39,7 +62,21 @@ block container
                             th Telefono
                             th Fecha de Nacimiento
                             th Municipio
+                            th Editar / Eliminar
                         tbody.tbody-info
+                            if(clientes.length > 0)
+                                each cliente in clientes
+                                    tr(class="data-"+cliente.clienteCod)
+                                        td #{cliente.clienteCod}
+                                        td #{cliente.nombre}
+                                        td #{cliente.apellido}
+                                        td #{cliente.email}
+                                        td #{cliente.telefono}
+                                        td #{cliente.fechaNacimiento}
+                                        td #{cliente.nombreMunicipio}
+                                        td(class="")
+                                            a.btn.btn-lg.btn-success(href=`javascript:editar('${cliente.clienteCod}', '${cliente.nombre}', '${cliente.apellido}', '${cliente.email}', '${cliente.telefono}', '${cliente.fechaNacimiento}', '${cliente.municipioId}')` ) Editar
+                                            a.btn.btn-lg.btn-danger(href=`/deleteCliente/` + cliente.clienteCod) Eliminar
         else
             h3.w-50.bg-warning.offset-3 Por favor, se necesitan tener ingresado Municipio
             a.w-50.offset-3.btn.btn-lg.btn-success.mt-1(href='/newMunicipio') Municipio
