@@ -4,7 +4,6 @@ import { selectMunicipio } from '../controllers/authController.js';
 const router = express.Router();
 
 router.get('/cliente',selectMunicipio, selectCliente,(req, res) =>{
-    console.log(req.dataCliente);
     res.render('cliente',{munis:req.data, clientes: req.dataCliente});
 });
 //ingresar
